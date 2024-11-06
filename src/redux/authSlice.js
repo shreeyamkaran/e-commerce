@@ -13,7 +13,7 @@ export const authSlice = createSlice({
         },
         removeToken: (state) => {
             state.token = null;
-            window.localStorage.removeItem("token");
+            window.localStorage.clear();
         }
     }
 });

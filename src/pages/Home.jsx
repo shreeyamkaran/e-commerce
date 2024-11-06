@@ -38,7 +38,7 @@ export default function Home() {
                     ) : (
                         products && products.map(product => {
                             return (
-                                <ProductCard key={ product.id } id={ product.id } image={ product.image } title={ product.title } price={ product.price } ratings={ product.rating.rate } />
+                                <ProductCard key={ product.id } product={ product } />
                             );
                         })
                     )

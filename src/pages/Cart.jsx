@@ -15,7 +15,7 @@ export default function Cart() {
                     {
                         items.map(item => {
                             return (
-                                <CartProduct key={ item.id } image={item.image} title={ item.title } description={ item.description } price={ item.price } ratings={ item.rating.rate } quantity={ item.quantity } />
+                                <CartProduct key={ item.id } image={ item.image } title={ item.title } description={ item.description } price={ item.price } ratings={ item.rating.rate } quantity={ item.quantity } />
                             );
                         })
                     }

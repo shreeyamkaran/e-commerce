@@ -52,13 +52,7 @@ export default function Login() {
                     {errors.username && <p className="text-red-700 mr-auto">Username is required</p>}
                     <input type="password" { ...register("password", { required: true }) } disabled={ loading } className="px-4 py-2 outline-none border-2 rounded-lg" placeholder="password" />
                     {errors.password && <p className="text-red-700 mr-auto">Password is required</p>}
-                    {
-                        loading ? (
-                            <BarLoader />
-                        ) : (
-                            <input type="submit" className="cursor-pointer bg-yellow-400 w-1/4 p-2 rounded-lg" value="Login" />
-                        )
-                    }
+                    <button type="submit" className={ `cursor-pointer ${ loading ? "bg-white" : "bg-yellow-400" } p-2 rounded-lg` }>{ loading ? <BarLoader /> : "Login" }</button>
                 </form>
             </div>
         </div>
