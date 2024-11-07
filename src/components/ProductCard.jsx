@@ -1,6 +1,6 @@
 import { FaMinus, FaPlus, FaStar } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart, removeFromCart } from "../redux/cartSlice";
 import toast from "react-hot-toast";
@@ -9,11 +9,17 @@ import { useState } from "react";
 export default function ProductCard({ product }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [quantity, setQuantity] = useState(window.localStorage.getItem(product.id) ? window.localStorage.getItem(product.id) : 0);
+    const token = useSelector(state => state.auth.token);
+    const [quantity, setQuantity] = useState(window.localStorage.getItem(product.id) ? Number(window.localStorage.getItem(product.id)) : 0);
     const describeProductDetails = () => {
         navigate(`/products/${ product.id }`);
     }
     const addItemToCart = () => {
+        if(!token) {
+            navigate("/auth");
+            toast.error("Please login to add products to cart");
+            return;
+        }
         dispatch(addToCart({ product }));
         setQuantity(window.localStorage.getItem(product.id));
         toast.success("Item added to cart");

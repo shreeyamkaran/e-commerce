@@ -39,7 +39,7 @@ export default function Login() {
         }
     }
     return (
-        <div className="grid grid-cols-2 h-[100vh]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 h-[100vh]">
             <div className="bg-yellow-400 flex flex-col gap-4 justify-center p-4">
                 <p className="text-6xl">Fake Store</p>
                 <p className="text-2xl">The Ultimate Fake Store - Real Deals, Fake Products!</p>
@@ -52,7 +52,7 @@ export default function Login() {
                     {errors.username && <p className="text-red-700 mr-auto">Username is required</p>}
                     <input type="password" { ...register("password", { required: true }) } disabled={ loading } className="px-4 py-2 outline-none border-2 rounded-lg" placeholder="password" />
                     {errors.password && <p className="text-red-700 mr-auto">Password is required</p>}
-                    <button type="submit" className={ `cursor-pointer ${ loading ? "bg-white" : "bg-yellow-400" } p-2 rounded-lg` }>{ loading ? <BarLoader /> : "Login" }</button>
+                    <button type="submit" className={ `w-2/3 cursor-pointer ${ loading ? "bg-white" : "bg-yellow-400" } p-2 rounded-lg` }>{ loading ? <BarLoader /> : "Login" }</button>
                 </form>
             </div>
         </div>

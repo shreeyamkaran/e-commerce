@@ -50,11 +50,31 @@ export const cartSlice = createSlice({
             window.localStorage.setItem("amount", state.amount);
             window.localStorage.setItem(product.id, Number(window.localStorage.getItem(product.id)) - 1);
         },
-        clearCart: (state, action) => {
-
+        clearItemFromCart: (state, action) => {
+            const { product } = action.payload;
+            state.items = state.items.filter(item => item.id != product.id);
+            state.count = state.count - product.quantity;
+            state.amount = state.amount - product.quantity * product.price;
+            window.localStorage.removeItem(product.id);
+            window.localStorage.setItem("items", JSON.stringify(state.items));
+            window.localStorage.setItem("count", state.count);
+            window.localStorage.setItem("amount", state.amount);
+        },
+        clearCart: (state) => {
+            state.amount = 0;
+            state.count = 0;
+            state.items = [];
+            const token = window.localStorage.getItem("token");
+            window.localStorage.clear();
+            window.localStorage.setItem("token", token);
+        },
+        resetState: (state) => {
+            state.amount = 0;
+            state.count = 0;
+            state.items = [];
         }
     }
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearItemFromCart, clearCart, resetState } = cartSlice.actions;
 export default cartSlice.reducer;
